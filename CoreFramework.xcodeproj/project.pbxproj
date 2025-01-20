@@ -9,12 +9,20 @@
 /* Begin PBXBuildFile section */
 		A92800592D3DDC6600976860 /* CoreFramework.docc in Sources */ = {isa = PBXBuildFile; fileRef = A92800582D3DDC6600976860 /* CoreFramework.docc */; };
 		A928005A2D3DDC6600976860 /* CoreFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = A92800572D3DDC6600976860 /* CoreFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A92800632D3DE11B00976860 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92800622D3DE11B00976860 /* OnboardingView.swift */; };
+		A92800692D3DE27000976860 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92800682D3DE27000976860 /* Colors.swift */; };
+		A928006B2D3DE27A00976860 /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A928006A2D3DE27A00976860 /* Metrics.swift */; };
+		A928006D2D3DE28200976860 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = A928006C2D3DE28200976860 /* Text.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A92800542D3DDC6600976860 /* CoreFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A92800572D3DDC6600976860 /* CoreFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreFramework.h; sourceTree = "<group>"; };
 		A92800582D3DDC6600976860 /* CoreFramework.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = CoreFramework.docc; sourceTree = "<group>"; };
+		A92800622D3DE11B00976860 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		A92800682D3DE27000976860 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		A928006A2D3DE27A00976860 /* Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metrics.swift; sourceTree = "<group>"; };
+		A928006C2D3DE28200976860 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,10 +55,62 @@
 		A92800562D3DDC6600976860 /* CoreFramework */ = {
 			isa = PBXGroup;
 			children = (
+				A92800602D3DE10B00976860 /* Sources */,
 				A92800572D3DDC6600976860 /* CoreFramework.h */,
 				A92800582D3DDC6600976860 /* CoreFramework.docc */,
 			);
 			path = CoreFramework;
+			sourceTree = "<group>";
+		};
+		A92800602D3DE10B00976860 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A92800642D3DE22600976860 /* Constants */,
+				A92800612D3DE11000976860 /* Onboarding */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A92800612D3DE11000976860 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				A92800622D3DE11B00976860 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		A92800642D3DE22600976860 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				A92800672D3DE23A00976860 /* Text */,
+				A92800662D3DE22F00976860 /* Metrics */,
+				A92800652D3DE22B00976860 /* Colors */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		A92800652D3DE22B00976860 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				A92800682D3DE27000976860 /* Colors.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		A92800662D3DE22F00976860 /* Metrics */ = {
+			isa = PBXGroup;
+			children = (
+				A928006A2D3DE27A00976860 /* Metrics.swift */,
+			);
+			path = Metrics;
+			sourceTree = "<group>";
+		};
+		A92800672D3DE23A00976860 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				A928006C2D3DE28200976860 /* Text.swift */,
+			);
+			path = Text;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +193,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A92800592D3DDC6600976860 /* CoreFramework.docc in Sources */,
+				A928006D2D3DE28200976860 /* Text.swift in Sources */,
+				A92800692D3DE27000976860 /* Colors.swift in Sources */,
+				A92800632D3DE11B00976860 /* OnboardingView.swift in Sources */,
+				A928006B2D3DE27A00976860 /* Metrics.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
