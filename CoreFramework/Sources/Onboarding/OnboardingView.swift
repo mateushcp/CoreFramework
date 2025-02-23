@@ -9,22 +9,30 @@ import Foundation
 import UIKit
 
 public class OnboardingView: UIView {
-    private var steps: [String] = []
+    private var steps: [(image: UIImage?, text: String)] = []
     private var currentStep = 0
     
-    private let backgroundview: UIView = {
+    private let backgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = Colors.gray100.withAlphaComponent(0.4)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     private let messageLabel: UILabel = {
         let label = UILabel()
-        label.textColor = Colors.gray300
+        label.textColor = .white  // Texto branco
         label.font = Typography.heading
         label.numberOfLines = 0
-        label.textAlignment = .left
+        label.textAlignment = .center
+        label.alpha = 0  // Começa invisível para a animação
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -38,7 +46,7 @@ public class OnboardingView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-  
+    
     public init() {
         super.init(frame: .zero)
         setupUI()
@@ -49,37 +57,41 @@ public class OnboardingView: UIView {
     }
     
     private func setupUI() {
-        addSubview(backgroundview)
+        addSubview(backgroundView)
+        addSubview(imageView)
         addSubview(messageLabel)
         addSubview(nextButton)
-        
         setupConstraints()
     }
     
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            backgroundview.topAnchor.constraint(equalTo: topAnchor),
-            backgroundview.leadingAnchor.constraint(equalTo: leadingAnchor),
-            backgroundview.trailingAnchor.constraint(equalTo: trailingAnchor),
-            backgroundview.bottomAnchor.constraint(equalTo: bottomAnchor),
+            backgroundView.topAnchor.constraint(equalTo: topAnchor),
+            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
+            imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            imageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -50),
+            imageView.widthAnchor.constraint(equalToConstant: 200),
+            imageView.heightAnchor.constraint(equalToConstant: 200),
+            
+            messageLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
             messageLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            messageLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Metrics.medium),
             messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Metrics.medium),
             
             nextButton.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: Metrics.medium),
             nextButton.centerXAnchor.constraint(equalTo: centerXAnchor)
-            
         ])
     }
     
-    public func presentOnboarding(on view: UIView, with steps: [String]) {
+    public func presentOnboarding(on view: UIView, with steps: [(image: UIImage?, text: String)]) {
         self.steps = steps
         self.currentStep = 0
-        //criar uma func pra iterar o step +1
         view.addSubview(self)
         translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             topAnchor.constraint(equalTo: view.topAnchor),
             leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -87,10 +99,30 @@ public class OnboardingView: UIView {
             bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
+        updateStep(animated: false)
     }
     
-    private func updateStep() {
-        messageLabel.text = steps[currentStep]
+    private func updateStep(animated: Bool = true) {
+        let step = steps[currentStep]
+        imageView.image = step.image
+        messageLabel.text = step.text
+        
+        if animated {
+            animateTextEntry()
+        } else {
+            messageLabel.alpha = 1
+            messageLabel.transform = .identity
+        }
+    }
+    
+    private func animateTextEntry() {
+        messageLabel.alpha = 0
+        messageLabel.transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width, y: 0)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+            self.messageLabel.alpha = 1
+            self.messageLabel.transform = .identity
+        })
     }
     
     @objc
