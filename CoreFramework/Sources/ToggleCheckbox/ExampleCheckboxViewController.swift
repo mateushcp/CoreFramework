@@ -1,5 +1,5 @@
 //
-//  CheckboxViewController.swift
+//  ExampleCheckboxViewController.swift
 //  ExampleCore
 //
 //  Created by Mateus Henrique Coelho de Paulo on 27/02/25.
@@ -20,8 +20,8 @@ class CheckboxViewController: UIViewController {
         NSLayoutConstraint.activate([
             checkbox.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             checkbox.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            checkbox.widthAnchor.constraint(equalToConstant: 50),
-            checkbox.heightAnchor.constraint(equalToConstant: 50)
+            checkbox.widthAnchor.constraint(equalToConstant: 60),
+            checkbox.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
 }

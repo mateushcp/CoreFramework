@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class ToggleCheckbox: UIButton {
-    private var isChecked = false
+    private var isChecked: Bool = false
     private let checkedImage = UIImage(named: "checkedCheckbox")
     private let uncheckedImage = UIImage(named: "uncheckedCheckbox")
     
@@ -23,12 +23,13 @@ class ToggleCheckbox: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc private func toggle() {
+    @objc
+    private func toggle() {
         isChecked.toggle()
         self.setImage(isChecked ? checkedImage : uncheckedImage, for: .normal)
     }
     
-    func isCheckedState() -> Bool {
+    public func getIsCheckedState() -> Bool {
         return isChecked
     }
 }
