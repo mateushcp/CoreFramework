@@ -19,30 +19,40 @@ class CustomButton: UIButton {
     
     private var customWidth: CGFloat?
     
-    // Init sem ícone e com tamanho regular
     init(title: String, backgroundColor: UIColor = Colors.primaryRedBase) {
         super.init(frame: .zero)
-        setupButton(title: title, icon: nil, iconPosition: nil, backgroundColor: backgroundColor)
+        setupButton(title: title,
+                    icon: nil,
+                    iconPosition: nil,
+                    backgroundColor: backgroundColor)
     }
     
-    // Init com ícone e posição
     init(title: String, icon: UIImage, iconPosition: NSLayoutConstraint.Axis, backgroundColor: UIColor = Colors.primaryRedBase) {
         super.init(frame: .zero)
-        setupButton(title: title, icon: icon, iconPosition: iconPosition, backgroundColor: backgroundColor)
+        setupButton(title: title,
+                    icon: icon,
+                    iconPosition: iconPosition,
+                    backgroundColor: backgroundColor)
     }
     
-    // Init com tamanho customizado
-    init(title: String, width: CGFloat, backgroundColor: UIColor = Colors.primaryRedBase) {
+    init(title: String, 
+         width: CGFloat,
+         backgroundColors: UIColor = Colors.primaryRedBase) {
         super.init(frame: .zero)
-        self.customWidth = width
-        setupButton(title: title, icon: nil, iconPosition: nil, backgroundColor: backgroundColor)
+        setupButton(title: title,
+                    icon: nil,
+                    iconPosition: nil,
+                    backgroundColor: backgroundColors)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupButton(title: String, icon: UIImage?, iconPosition: NSLayoutConstraint.Axis?, backgroundColor: UIColor) {
+    private func setupButton(title: String,
+                             icon: UIImage?,
+                             iconPosition: NSLayoutConstraint.Axis?,
+                             backgroundColor: UIColor) {
         self.setTitle(title, for: .normal)
         self.titleLabel?.font = Typography.subHeading
         self.setTitleColor(Colors.gray800, for: .normal)
@@ -56,12 +66,11 @@ class CustomButton: UIButton {
             self.iconPosition = iconPosition
             adjustIconPosition()
         }
-        
         self.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        self.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    @objc private func buttonTapped() {
+    @objc
+    private func buttonTapped() {
         delegate?.buttonAction()
     }
     
@@ -75,15 +84,4 @@ class CustomButton: UIButton {
         }
     }
     
-    func applyConstraints(to view: UIView) {
-        NSLayoutConstraint.activate([
-            self.heightAnchor.constraint(equalToConstant: Metrics.buttonSize),
-            self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Metrics.medium),
-            self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Metrics.medium)
-        ])
-        
-        if let customWidth = customWidth {
-            self.widthAnchor.constraint(equalToConstant: customWidth).isActive = true
-        }
-    }
 }

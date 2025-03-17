@@ -1,5 +1,5 @@
 //
-//  ButtonTesetViewConstroller.swift
+//  ExampleButtonTestViewController.swift
 //  ExampleCore
 //
 //  Created by Mateus Henrique Coelho de Paulo on 27/02/25.
@@ -12,10 +12,11 @@ class ButtonTestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        
-        let buttonWithIcon = CustomButton(title: "Com Ícone", icon: UIImage(systemName: "star")!, iconPosition: .horizontal)
-        let buttonWithoutIcon = CustomButton(title: "Sem Ícone")
-        
+        guard let starImage = UIImage(systemName: "star") else {
+            return
+        }
+        let buttonWithIcon = CustomButton(title: "com ícone", icon: starImage, iconPosition: .horizontal)
+        let buttonWithoutIcon = CustomButton(title: "Sem icone, simples")
         
         buttonWithIcon.translatesAutoresizingMaskIntoConstraints = false
         buttonWithoutIcon.translatesAutoresizingMaskIntoConstraints = false
@@ -25,7 +26,7 @@ class ButtonTestViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             buttonWithIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            buttonWithIcon.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -30),
+            buttonWithIcon.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             buttonWithIcon.heightAnchor.constraint(equalToConstant: 50),
             buttonWithIcon.widthAnchor.constraint(equalToConstant: 300),
             
@@ -33,6 +34,7 @@ class ButtonTestViewController: UIViewController {
             buttonWithoutIcon.topAnchor.constraint(equalTo: buttonWithIcon.bottomAnchor, constant: 20),
             buttonWithoutIcon.heightAnchor.constraint(equalToConstant: 50),
             buttonWithoutIcon.widthAnchor.constraint(equalToConstant: 200)
+            
         ])
     }
 }
